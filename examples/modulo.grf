@@ -1,0 +1,16 @@
+id = proector<0, 1>
+one_way_zero = recursion<zero, proector<1, 2>>
+
+minus_one = recursion<zero, proector<0, 2>>
+//minus_one(x) = max(0, x - 1)
+
+
+mod_minus = recursion<minus_one, proector<1, 3>>
+//mod_minus(m, a) = a - 1 (mod m)
+//f(x, k) = (k == 0 ? 0 : x - k). expected k <= x
+f = recursion<one_way_zero, composition<mod_minus, proector<2, 3>>>
+//so f(x, f(x, k)) = k (mod x). expected k <= x
+f2 = composition<f, proector<0, 2>, f>
+
+third_plus_one = composition<succcessor, proector<2, 3>>
+modulo = recursion<one_way_zero, composition<f2, proector<0, 3>, third_plus_one>>
