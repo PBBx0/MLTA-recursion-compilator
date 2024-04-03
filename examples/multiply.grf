@@ -1,0 +1,8 @@
+first = proector<0, 3>
+third = proector<2, 3>
+third_plus = composition<successor, third>
+id = proector<0, 1>
+sum = recursion<id, third_plus>
+first_plus_third = composition<sum, first, third>
+multiply = recursion<zero, first_plus_third>
+multiply
