@@ -1,35 +1,35 @@
-id = proector<0, 1>
-one_way_zero = recursion<zero, proector<1, 2>>
+id = projector<0, 1>
+one_way_zero = recursion<zero, projector<1, 2>>
 one_way_one = composition<successor, one_way_zero>
 one = successor<zero>
 
-third_plus = composition<successor, proector<2, 3>>
-sum = recursion<proector<0, 1>, third_plus>
-first_plus_third = composition<sum, proector<0, 3>, proector<2, 3>>
+third_plus = composition<successor, projector<2, 3>>
+sum = recursion<projector<0, 1>, third_plus>
+first_plus_third = composition<sum, projector<0, 3>, projector<2, 3>>
 multiply = recursion<zero, first_plus_third>
 // описано в multiply.grf
 
-minus_one = recursion<zero, proector<0, 2>>
+minus_one = recursion<zero, projector<0, 2>>
 // minus_one(x) = max(0, x - 1)
 
 
-mod_minus = recursion<minus_one, proector<1, 3>>
-f = recursion<one_way_zero, composition<mod_minus, proector<2, 3>>>
-f2 = composition<f, proector<0, 2>, f>
+mod_minus = recursion<minus_one, projector<1, 3>>
+f = recursion<one_way_zero, composition<mod_minus, projector<2, 3>>>
+f2 = composition<f, projector<0, 2>, f>
 
-third_plus_one = composition<successor, proector<2, 3>>
-modulo = recursion<one_way_zero, composition<f2, proector<0, 3>, third_plus_one>>
+third_plus_one = composition<successor, projector<2, 3>>
+modulo = recursion<one_way_zero, composition<f2, projector<0, 3>, third_plus_one>>
 // описано в modulo.grf
 
 
-cast_to_bool = recursion<zero, composition<one_way_one, proector<0, 2>>>
+cast_to_bool = recursion<zero, composition<one_way_one, projector<0, 2>>>
 // cast_to_bool(x) = [x == 0 ? 0 : 1]
 //cast_to_bool(0) -> 0
 //cast_to_bool(x + 1) 
-//		-> one_way_one(proector<0, 2>(x, cast_to_bool(x)))
+//		-> one_way_one(projector<0, 2>(x, cast_to_bool(x)))
 //				-> 1
 
-f = composition<multiply, proector<2, 3>, composition<modulo, proector<0, 3>, proector<1, 3>>>
+f = composition<multiply, projector<2, 3>, composition<modulo, projector<0, 3>, projector<1, 3>>>
 //f(x, y, z) 
 //		-> multiply(z, modulo(x, y))
 //				-> z * (y mod x)
@@ -50,7 +50,7 @@ is_prime_helper = composition<cast_to_bool, composition<lambda, id, id>>
 is_not_zero = composition<zero, one_way_one>
 //is_not_zero(x) -> [x != 0 ? 1 : 0]
 
-is_not_one_or_zero = recursion<zero, composition<is_not_zero, proector<0, 2>>>
+is_not_one_or_zero = recursion<zero, composition<is_not_zero, projector<0, 2>>>
 //is_not_one_or_zero(x) -> [x > 1 ? 1 : 0]
 //is_not_one_or_zero(0) -> 0
 //is_not_one_or_zero(x + 1) -> is_not_zero(x, is_not_one_or_zero(x)) -> [x > 0 ? 1 : 0]

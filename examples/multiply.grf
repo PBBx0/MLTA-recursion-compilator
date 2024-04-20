@@ -1,12 +1,12 @@
-first = proector<0, 3>
+first = projector<0, 3>
 //first(x, y, z) -> x
 
-third = proector<2, 3>
+third = projector<2, 3>
 //third(x, y, z) -> z
 third_plus = composition<successor, third>
 //third_plus(x, y, z) -> z + 1
 
-id = proector<0, 1>
+id = projector<0, 1>
 //id(x) -> x
 
 sum = recursion<id, third_plus>
