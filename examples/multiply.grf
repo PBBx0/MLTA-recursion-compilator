@@ -1,8 +1,26 @@
 first = proector<0, 3>
+//first(x, y, z) -> x
+
 third = proector<2, 3>
+//third(x, y, z) -> z
 third_plus = composition<successor, third>
+//third_plus(x, y, z) -> z + 1
+
 id = proector<0, 1>
+//id(x) -> x
+
 sum = recursion<id, third_plus>
+//sum(x, y) -> x + y
+
 first_plus_third = composition<sum, first, third>
+//first_plus_third(x, y, z) -> x + z
+
 multiply = recursion<zero, first_plus_third>
+//multiply(x, 0) -> zero -> 0
+//multiply(x, y + 1) 
+//		-> first_plus_third(x, y, multiply(x, y)) 
+//				-> x + mulptiply(x, y) 
+//						-> x + x * y 
+//								-> x * (y + 1)
+
 multiply
